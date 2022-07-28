@@ -1,0 +1,35 @@
+.nav-bar-container {
+  background-color: #82CAFF;
+  width: 100%;
+  display: flex;
+  .nav-bar-items {
+
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    min-width: 800px;
+    max-width: 900px;
+
+    .nav-bar-links {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      color: #0d0e43;
+      display: flex;
+      align-items: center;
+
+
+      ul {
+        margin: 0;
+      }
+      li {
+        display: inline-flex;
+        margin: 20px;
+        text-decoration: none;
+      }
+    }
+
+  }
+
+  }
