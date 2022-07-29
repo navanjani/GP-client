@@ -1,8 +1,22 @@
-
+@import "./src/variables";
 .page-container{
   max-width: 900px;
-  display: flex;
-  background: linear-gradient(180deg,#ADDFFF 0%, rgba(234, 230, 255, 0) 100%);
-   min-height: 900px;
+  background: #E5E4E4;
+  min-height: 1000px;
+  text-align: center;
+  padding: 30px;
+  margin-top: 20px;
+
+  h1{
+   text-align: center;
+    font-size: 34px;
+    margin: 60px;
+    font-family: $font-crimson;
+    color: #0d0e43;
+  }
+  .btn-wrapper{
+    margin-top: 30px;
+  }
+
 
 }

@@ -1,7 +1,11 @@
+@import "./src/variables";
+
 .nav-bar-container {
-  background-color: #82CAFF;
+  background-color: #0d0e43;
   width: 100%;
   display: flex;
+  font-family: $font-lato;
+
   .nav-bar-items {
 
     margin-left: auto;
@@ -15,7 +19,7 @@
       font-weight: 400;
       font-size: 20px;
       line-height: 20px;
-      color: #0d0e43;
+      color: whitesmoke;
       display: flex;
       align-items: center;
 
