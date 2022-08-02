@@ -22,24 +22,24 @@ const DoctorSchedule = () => {
   return (
     <div className="container page-container shadow-sm p-3 mb-5 bg-body rounded">
       <h1> Who is on duty ? </h1>
-      {doctors
-        ? doctors.map((doctor, index) => (
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col3">Doctor</th>
-                  <th scope="col-3">Availability</th>
-                </tr>
-              </thead>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col3">Doctor</th>
+            <th scope="col-3">Availability</th>
+          </tr>
+        </thead>
+        {doctors
+          ? doctors.map((doctor, index) => (
               <tbody key={index}>
                 <tr>
                   <th>{doctor.doctor}</th>
-                  <th>{doctor.onduty ? "on duty" : "off duty"}</th>
+                  <th>{doctor.onDuty ? "on duty" : "off duty"}</th>
                 </tr>
               </tbody>
-            </table>
-          ))
-        : "Loading ..."}
+            ))
+          : "Loading.."}
+      </table>
       <ContactDetails />
     </div>
   );
