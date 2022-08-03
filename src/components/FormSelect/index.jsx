@@ -12,9 +12,9 @@ const FormSelect = ({ label, value, handleOnChange }) => {
               value={value}
               onChange={handleOnChange}
             >
-              <option defaultValue="Gender">Gender</option>
-              <option value="1">Male</option>
-              <option value="2">Female</option>
+              <option value="">--choose--</option>
+              <option value="0">Male</option>
+              <option value="1">Female</option>
             </select>
           </div>
         </div>

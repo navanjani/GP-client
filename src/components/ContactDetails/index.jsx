@@ -1,6 +1,4 @@
-import { useState } from "react";
 import "./style.scss";
-import { findAllByDisplayValue } from "@testing-library/react";
 
 const ContactDetails = () => {
   const openTime = "08:00:00";

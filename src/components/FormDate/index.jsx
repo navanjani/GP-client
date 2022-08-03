@@ -1,3 +1,6 @@
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 const FormDate = ({ label, value, handleOnChange }) => {
   return (
     <div className="row">
@@ -6,7 +9,14 @@ const FormDate = ({ label, value, handleOnChange }) => {
           <label htmlFor="dob" className="col-sm-4 col-form-label">
             {label}
           </label>
-          <div className="col-sm-8"></div>
+          <div className="col-sm-8">
+            <DatePicker
+              dateFormat="dd/MM/yyyy"
+              selected={value}
+              onChange={handleOnChange}
+              showYearDropdown
+            />
+          </div>
         </div>
       </div>
     </div>

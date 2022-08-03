@@ -1,4 +1,5 @@
 import "./style.scss";
+import { NavLink } from "react-router-dom";
 const PatientCard = ({ name, id, dateofbirth }) => {
   return (
     <div className="card patient-card">
@@ -6,7 +7,9 @@ const PatientCard = ({ name, id, dateofbirth }) => {
         <h3 className="card-title">{name}</h3>
         <p className="card-text">Patient ID : {id}</p>
         <p className="card-text">Date of Birth : {dateofbirth}</p>
-        <button className="btn btn-primary"> Show Details</button>
+        <NavLink to={`/patients/${id}`}>
+          <button className="btn btn-primary"> Show Details</button>
+        </NavLink>
       </div>
     </div>
   );

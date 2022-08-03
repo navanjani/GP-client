@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { PatientCard } from "../../components";
 import "./style.scss";
+import { BASE_URL } from "../../config";
 
 const compareName = (patientA, patientB) => {
   return patientA.lastName.localeCompare(patientB.lastName);
@@ -19,9 +20,7 @@ const PatientDatabase = () => {
 
   const getAllPatients = async () => {
     try {
-      const response = await axios.get(
-        "https://my-json-server.typicode.com/Codaisseur/patient-doctor-data/patients"
-      );
+      const response = await axios.get(`${BASE_URL}/patients`);
       setPatients(response.data);
     } catch (e) {
       console.log(e.message);
@@ -29,9 +28,7 @@ const PatientDatabase = () => {
   };
   const getDoctors = async () => {
     try {
-      const response = await axios.get(
-        "https://my-json-server.typicode.com/Codaisseur/patient-doctor-data/doctors"
-      );
+      const response = await axios.get(`${BASE_URL}/doctors`);
       console.log(response);
       setDoctors(response.data);
     } catch (e) {

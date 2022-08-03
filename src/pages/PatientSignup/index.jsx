@@ -7,18 +7,18 @@ import {
   ButtonSubmit,
 } from "../../components";
 
-const PatientSignup = (CreateNewPatient) => {
+const PatientSignup = ({ addPatient }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState(new Date());
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
-      CreateNewPatient({
+      addPatient({
         firstName,
         lastName,
         gender,
@@ -26,9 +26,8 @@ const PatientSignup = (CreateNewPatient) => {
         email,
         phone,
       });
-      alert("successfully Signup!");
-      console.log({ patient: { firstName } });
       resetForm();
+      alert("successfully signup!");
     } else {
       alert("Invalid Form!");
     }
@@ -52,7 +51,7 @@ const PatientSignup = (CreateNewPatient) => {
     setPhone("");
     setGender("");
     setEmail("");
-    setDateOfBirth("");
+    setDateOfBirth(new Date());
   };
   return (
     <div className="container page-container shadow-sm p-3 mb-5 bg-body rounded">
@@ -88,20 +87,17 @@ const PatientSignup = (CreateNewPatient) => {
           }}
         />
         <FormSelect
-          label={"Gender"}
+          label={"Gender:"}
           value={gender}
-          handleOnChange={(event) => {
-            setGender(event.target.value);
-          }}
+          handleOnChange={(event) => setGender(event.target.value)}
         />
         <FormDate
           label={"Date Of Birth:"}
           value={dateOfBirth}
-          handleOnChange={(event) => {
-            setDateOfBirth(event.target.value);
-          }}
+          handleOnChange={(date) => setDateOfBirth(date)}
         />
-        <ButtonSubmit handleOnSubmit={handleSubmit} />
+
+        <ButtonSubmit />
       </form>
     </div>
   );
