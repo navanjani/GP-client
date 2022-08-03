@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { PatientCard } from "../../components";
 import "./style.scss";
@@ -9,18 +9,12 @@ const compareName = (patientA, patientB) => {
 
 const PatientDatabase = () => {
   const [patients, setPatients] = useState([]);
-  const [displayPatients, setDisplayPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  const [selectedDoctor, setSelectedDoctor] = useState("");
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   const handleDoctorChange = (event) => {
     const selected = event.target.value;
-    setSelectedDoctor(selected);
-    // Filter only when there is a value
-    const filteredPatients = selected
-      ? patients.filter((patient) => patient.doctorId === selected)
-      : patients;
-    setDisplayPatients(filteredPatients);
+    setSelectedDoctor(parseInt(selected));
   };
 
   const getAllPatients = async () => {
@@ -28,11 +22,9 @@ const PatientDatabase = () => {
       const response = await axios.get(
         "https://my-json-server.typicode.com/Codaisseur/patient-doctor-data/patients"
       );
-      console.log(response);
       setPatients(response.data);
-      setDisplayPatients(response.data);
     } catch (e) {
-      console.log(e.meesage);
+      console.log(e.message);
     }
   };
   const getDoctors = async () => {
@@ -46,7 +38,17 @@ const PatientDatabase = () => {
       console.log(e.message);
     }
   };
-  const patientsSorted = [...displayPatients].sort(compareName);
+
+  const filteredPatients = useMemo(
+    () =>
+      patients.filter((patient) => {
+        return selectedDoctor > 0 ? patient.doctorId === selectedDoctor : true;
+      }),
+    [patients, selectedDoctor]
+  );
+
+  const patientsSorted = [...filteredPatients].sort(compareName);
+
   useEffect(() => {
     getAllPatients();
     getDoctors();
@@ -71,7 +73,7 @@ const PatientDatabase = () => {
           "Loading doctors.."
         )}
       </p>
-      {displayPatients
+      {patientsSorted
         ? patientsSorted.map((patient, index) => (
             <PatientCard
               key={index}
